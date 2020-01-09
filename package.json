@@ -1,0 +1,27 @@
+{
+  "name": "contact-subscribers",
+  "description": "Bulk email solution - GOV.UK Notify",
+  "version": "0.1.0",
+  "private": false,
+  "engines": {
+    "node": "10.x"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "chokidar": "latest",
+    "client-sessions": "latest",
+    "crypto": "latest",
+    "csv-stringify": "^5.3.4",
+    "dotenv": "latest",
+    "express": "^4.15.2",
+    "express-validator": "latest",
+    "lodash": "^4.17.4",
+    "log-timestamp": "latest",
+    "morgan": "^1.9.1",
+    "nunjucks": "^3.0.0",
+    "xss": "^1.0.6"
+  }
+}

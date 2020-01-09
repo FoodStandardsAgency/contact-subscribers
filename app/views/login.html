@@ -1,0 +1,36 @@
+{% extends "base_public.html" %}
+
+{% block page_content %}
+
+<main id="content" role="main">
+
+	<h1 class="heading-xlarge" style="margin-bottom:15px;">Log in</h1><br />
+
+	<div class="grid-row">
+		<section class="column-full">
+			
+			<form action="/login" method="post">
+			
+			<div class="container">
+			<div class="left30"><label for="user">Username:&nbsp; &nbsp;</label></div>
+			<div class="right70"><input id="user" type="text" name="user" class="form_input" placeholder="Username" required /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="password">Password:&nbsp; &nbsp;</label></div>
+			<div class="right70"><input id="password" type="password" name="password" class="form_input" placeholder="Password" required /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<br />
+			
+			<input type="submit" value="Log in" style="margin-left:2%;">
+
+			</form>
+		</section>
+	</div>
+</main>
+
+
+{% endblock %}
