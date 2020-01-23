@@ -52,23 +52,30 @@ router.post('/subs-send', function(req,res) {
 	var subject = req.body.subject;
 	var message = req.body.message;
 	
+	// Delete all files in tmp directory
+	
+	
 	// Generate notification batch ID
-	// current timestamp?
 	var reference = 'refrence';
 	
 	// Initialise Notify client
 	var notifyClient = new NotifyClient(process.env.TEST_KEY)
 	
-	console.log(req.files);
+	// Rename file currently in tmp directory
+	//console.log(req.files.list.path);
 	
 	// Translate CSV into an array
-	csv.parseCSV("test.csv", function(data){
+	csv.parseCSV(req.files.list.path, function(data){
 		
 		var emails_batch = JSON.stringify(data);
 		
-		// Loop to send emails
-		
+		console.log(emails_batch.length);
 		console.log(emails_batch);
+		// Loop to send emails
+		/*for (i = 0; emails_batch.length; i++) {
+			console.log(emails_batch[i]);
+		}*/
+
 	}, false);
 	
 

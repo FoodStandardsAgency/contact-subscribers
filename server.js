@@ -18,6 +18,8 @@ app.use(formidableMiddleware({
   encoding: 'utf-8',
   uploadDir: 'tmp',
   multiples: false, // req.files to be arrays of files
+  keepExtensions: true,
+  type: 'multipart'
 }));
 
 app.use(session({
