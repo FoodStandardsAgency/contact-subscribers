@@ -3,10 +3,9 @@ const express 	= require('express');
 const session	= require('client-sessions');
 const nunjucks  = require('nunjucks');
 const morgan = require('morgan');
+const formidableMiddleware = require('express-formidable');
 
 require('dotenv').config();
-
-
 
 const app = express();
 
@@ -14,6 +13,12 @@ const port = process.env.PORT || 7000;
 const dev = process.env.NODE_ENV !== 'production';
 
 app.use(express.urlencoded({extended: true}));
+
+app.use(formidableMiddleware({
+  encoding: 'utf-8',
+  uploadDir: 'tmp',
+  multiples: false, // req.files to be arrays of files
+}));
 
 app.use(session({
   cookieName: 'session',

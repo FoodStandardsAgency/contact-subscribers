@@ -1,7 +1,9 @@
 const express 			= require('express');
 const { check } 		= require('express-validator');
 const xss				= require('xss');
-const stringify 		= require('csv-stringify')
+const csv 				= require('csv-array');
+
+const NotifyClient = require('notifications-node-client').NotifyClient
 
 // Custom modules
 const router 			= express.Router();
@@ -34,7 +36,7 @@ router.get('/log-out', (req, res) => {
 //-------------------------------------------------------------------
 // APP PAGES
 //-------------------------------------------------------------------
-router.get('/',requireLogin, function (req, res) {
+router.get('/', function (req, res) {
 	
 	res.render('page');
 })
@@ -44,7 +46,47 @@ router.get('/',requireLogin, function (req, res) {
 // PROCESS SUBMISSION
 //-------------------------------------------------------------------
 
+router.post('/subs-send', function(req,res) {
+	
+	// Get submission values
+	var subject = req.body.subject;
+	var message = req.body.message;
+	
+	// Generate notification batch ID
+	// current timestamp?
+	var reference = 'refrence';
+	
+	// Initialise Notify client
+	var notifyClient = new NotifyClient(process.env.TEST_KEY)
+	
+	console.log(req.files);
+	
+	// Translate CSV into an array
+	csv.parseCSV("test.csv", function(data){
+		
+		var emails_batch = JSON.stringify(data);
+		
+		// Loop to send emails
+		
+		console.log(emails_batch);
+	}, false);
+	
 
+	
+	/*
+	notifyClient
+	  .sendEmail('03a5ef32-b1c3-4c13-bef2-d6086f355d99', ['anna.nikiel@food.gov.uk', 'anna@limeco.org'], {
+		personalisation: {
+			'subject': subject,
+			'message': message
+		},
+		reference: reference
+	  })
+	  .then(response => console.log(response))
+	  .catch(err => console.error(err))
+	 */
+	
+});
 	
 //-------------------------------------------------------------------
 // Error handling

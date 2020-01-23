@@ -1,9 +1,57 @@
-{% extends "base_public.html" %}
+{% extends "layout.html" %}
 
 {% block page_content %}
 
-Page content
+<!-- Guidance top -->
+<div class="row">
+	<div class="col-2 py-3"></div>
+	
+	<div class="col-8 py-3">
+	<p><span class="larger" style="font-weight:900;">Guidance:</span><br /><br />
+	The purpose of this app is to enable communication with subscribers, in case the usual methods do not work.<br /><br />
+	
+	To send a message, you need to upload a list of email addresses. It needs to be a csv file, with only one column and no header row.<br />
+	You can then type in you message. It will be send immediately after you click 'Send'. The delivery statistics are available in gov.uk Notify account.<br /><br />
+	
+	The list of subscribers is removed from the app automatically, 1h after it was uploaded, or when new list is uploaded. It can also be removed manually.</p>
+	
+	<br /><hr /><br />
+	
+	</div>
+	
+	<div class="col-2 py-3"></div>
+</div>
 
+
+<div class="row">
+	<div class="col-2 py-3"></div>
+	
+	<div class="col-8 py-3">
+	<form action="/subs-send" method="POST" enctype='multipart/form-data'>
+	
+	<p class="larger">1. Upload your subscribers list</p>
+	<br />
+	<input type="file" name="list" accept="csv" />
+	<br /><br /><br /><br />
+	
+	<p class="larger">2. Compose your message</p>
+	<br />
+	Subject:<br />
+	<input type="text" name="subject" class="input_field" /><br /><br />
+	
+	Message:<br />
+	<textarea name = "message" rows="10" class="input_field"></textarea>
+	<br /><br />
+	
+	<input type="submit" value="Send" class="submit_btn" />
+	
+	</form>
+	
+	<div class="col-2 py-3"></div>
+
+</div>
+
+	<br /><hr /><br />
 
 
 
