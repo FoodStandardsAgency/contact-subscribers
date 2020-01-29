@@ -1,9 +1,9 @@
 const express 			= require('express');
-const { check } 		= require('express-validator');
 const xss				= require('xss');
-const csv 				= require('csv-array');
+const csvParser 		= require('csv-parser');
+const fs 				= require('fs');
 
-const NotifyClient = require('notifications-node-client').NotifyClient
+const NotifyClient 		= require('notifications-node-client').NotifyClient
 
 // Custom modules
 const router 			= express.Router();
@@ -36,11 +36,7 @@ router.get('/log-out', (req, res) => {
 //-------------------------------------------------------------------
 // APP PAGES
 //-------------------------------------------------------------------
-router.get('/', function (req, res) {
-	
-	res.render('page');
-})
-
+router.get('/', function (req, res) {res.render('page');})
 
 //-------------------------------------------------------------------
 // PROCESS SUBMISSION
@@ -48,12 +44,38 @@ router.get('/', function (req, res) {
 
 router.post('/subs-send', function(req,res) {
 	
+	// Function to send Email through notify
+	function send_email(subject, message, email) {notifyClient
+	  .sendEmail(process.env.TEMPLATE_ID, email , {
+		personalisation: {
+			'subject': subject,
+			'message': message
+		},
+		reference: reference
+	  })
+	  .then(response => (console.log("Processed")))
+	  .catch(err => console.error(err))}
+	
+	// Function to read in email addressses from the file and send emails
+	function read_file_send_email(subject, message, reference, file) {
+	fs.createReadStream(file)
+    .pipe(csvParser({headers:['Email']}))
+    .on('data', (row) => {
+		var email = row['Email'].trim()
+		send_email(subject, message , email);
+    })
+	.on('end', () => {
+        console.log("End of file")
+		res.render('page', {"message":"y"})
+		res.end;
+		
+		})}
+	
 	// Get submission values
-	var subject = req.body.subject;
-	var message = req.body.message;
+	var subject = req.fields.subject;
+	var message = req.fields.message;
 	
-	// Delete all files in tmp directory
-	
+	var file	= req.files.list.path;
 	
 	// Generate notification batch ID
 	var reference = 'refrence';
@@ -61,39 +83,10 @@ router.post('/subs-send', function(req,res) {
 	// Initialise Notify client
 	var notifyClient = new NotifyClient(process.env.TEST_KEY)
 	
-	// Rename file currently in tmp directory
-	//console.log(req.files.list.path);
-	
-	// Translate CSV into an array
-	csv.parseCSV(req.files.list.path, function(data){
-		
-		var emails_batch = JSON.stringify(data);
-		
-		console.log(emails_batch.length);
-		console.log(emails_batch);
-		// Loop to send emails
-		/*for (i = 0; emails_batch.length; i++) {
-			console.log(emails_batch[i]);
-		}*/
-
-	}, false);
-	
-
-	
-	/*
-	notifyClient
-	  .sendEmail('03a5ef32-b1c3-4c13-bef2-d6086f355d99', ['anna.nikiel@food.gov.uk', 'anna@limeco.org'], {
-		personalisation: {
-			'subject': subject,
-			'message': message
-		},
-		reference: reference
-	  })
-	  .then(response => console.log(response))
-	  .catch(err => console.error(err))
-	 */
-	
+	read_file_send_email(subject, message, reference, file);
 });
+	
+	
 	
 //-------------------------------------------------------------------
 // Error handling

@@ -4,6 +4,8 @@ const session	= require('client-sessions');
 const nunjucks  = require('nunjucks');
 const morgan = require('morgan');
 const formidableMiddleware = require('express-formidable');
+const findRemoveSync = require('find-remove')
+var CronJob 	= require('cron').CronJob;
 
 require('dotenv').config();
 
@@ -54,6 +56,14 @@ if (dev) {
     });
   });
 }
+
+// CRON job running at xx:59 each hour, and deleting files older than an hour. Max file life time: 1h 59m.
+const job = new CronJob('0 59 * * * *', function() { 
+var result = findRemoveSync('tmp', {age: {seconds: 3600} , files: "*.*"});
+console.log(result);
+	});
+	
+job.start();
 
 // Middleware to serve static assets
 [
