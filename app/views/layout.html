@@ -1,0 +1,51 @@
+{% block top_of_page %}{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+    <title>{% block page_title %}Contact app{% endblock %} | Food Standards Agency</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+	<link rel="icon" href="/public/images/favicon_fsa.png" type="image/png">
+	<link href="/public/styles/bootstrap.min.css" rel="stylesheet"> 
+	<link href="/public/styles/style.css" rel="stylesheet"> 
+	
+    {% block head %}{% endblock %}
+  </head>
+
+  <body>
+   <div class="container-fluid" style="min-height:100vh;">
+  <!-- Top bar -->
+	<!-- Header & navigation -->
+	
+	<div class="row">
+		<div class="col-xl-2 col-md-1 col-sm-1" style="background-color:#006F51; border-bottom: 5px solid #A9C47F;"></div>
+		<div class="col-xl-5 col-md-7 col-sm-9 py-3" style="background-color:#006F51; border-bottom: 5px solid #A9C47F;">
+			<span style="color:#ffffff; font-size:2em; font-weight:900;">Contact subscribers</span>
+		</div>
+		<div class="col-1 text-right py-3" style="background-color:#006F51; border-bottom: 5px solid #A9C47F;">
+			<a href="/log-out" style="color:white;">Log-out</a>
+		</div>
+		<div class="col-xl-4 col-md-3 col-sm-1" style="background-color:#006F51; border-bottom: 5px solid #A9C47F;"></div>
+	</div>
+
+  
+  <!-- Page content -->
+ 
+  
+  {% block page_content %}{% endblock %}
+
+  <!-- Footer -->
+
+
+
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

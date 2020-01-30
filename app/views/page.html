@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block page_content %}
+
+<!-- Guidance top -->
+<div class="row">
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
+	
+	<div class="col-xl-6 col-md-8 col-sm-10 py-3">
+	<p><span class="larger" style="font-weight:900;">Guidance:</span><br /><br />
+	The purpose of this app is to enable communication with subscribers, in case the usual methods do not work.<br /><br />
+	
+	To send a message, you need to upload a list of email addresses. It needs to be a csv file, with only one column and no header row.<br />
+	You can then type your message on the form below. It will be send immediately after you click 'Send'. The delivery statistics are available in gov.uk Notify account.<br /><br />
+	
+	The list of subscribers is removed from the app automatically. It will be on the server for a maximum of 2h.</p>
+	
+	<br /><hr /><br />
+	
+	</div>
+	
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
+</div>
+
+
+<div class="row">
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
+	
+	<div class="col-xl-6 col-md-8 col-sm-10 py-3">
+	{% if message == 'y' %}
+	<p class="larger info_box">Thank you, your emails have been sent.</p><br />
+	{% endif %}
+	
+	<form action="/subs-send" method="POST" enctype='multipart/form-data'>
+	
+	<p class="larger">1. Upload your subscribers list</p>
+	<br />
+	<input type="file" name="list" accept="csv" />
+	<br /><br /><br /><br />
+	
+	<p class="larger">2. Compose your message</p>
+	<br />
+	Subject:<br />
+	<input type="text" name="subject" class="input_field" /><br /><br />
+	
+	Message:<br />
+	<textarea name = "message" rows="10" class="input_field"></textarea>
+	<br /><br />
+	
+	<input type="submit" value="Send" class="submit_btn" />
+	
+	</form>
+	
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
+
+</div>
+
+	<br /><hr /><br />
+
+
+
+{% endblock %}

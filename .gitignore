@@ -40,6 +40,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+tmp/
 
 # TypeScript v1 declaration files
 typings/
@@ -102,3 +103,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Generic libraries
+/app/assets/styles/bootstrap.min.css
+/app/assets/javascripts/jquery-1.9.1.min.js
+/app/assets/javascripts/jquery-1.11.3.js
+/app/assets/javascripts/details.polyfill.js

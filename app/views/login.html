@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block page_content %}
+
+<div class="row">
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
+	
+	<div class="col-xl-6 col-md-8 col-sm-10 py-3">
+	<p><span class="larger" style="font-weight:900;">Log in</span><br /><br />
+
+			<form action="/login" method="POST" enctype='multipart/form-data'>
+			
+			<p><strong>Username</strong></p>
+			<input type="text" name="user" class="input_field" style="width:75%;" placeholder="Username" required />
+			<br /><br />
+			
+			<p><strong>Password</strong></p>
+			<input type="password" name="password" class="input_field" style="width:75%;" placeholder="Password" required />
+			<br /><br />
+			
+			<input type="submit" value="Log in" class="submit_btn" />
+
+			</form>
+	</div>
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
+</div>
+
+
+{% endblock %}
