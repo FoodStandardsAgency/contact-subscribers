@@ -1,36 +1,29 @@
-{% extends "base_public.html" %}
+{% extends "layout.html" %}
 
 {% block page_content %}
 
-<main id="content" role="main">
+<div class="row">
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
+	
+	<div class="col-xl-6 col-md-8 col-sm-10 py-3">
+	<p><span class="larger" style="font-weight:900;">Log in</span><br /><br />
 
-	<h1 class="heading-xlarge" style="margin-bottom:15px;">Log in</h1><br />
-
-	<div class="grid-row">
-		<section class="column-full">
+			<form action="/login" method="POST" enctype='multipart/form-data'>
 			
-			<form action="/login" method="post">
+			<p><strong>Username</strong></p>
+			<input type="text" name="user" class="input_field" style="width:75%;" placeholder="Username" required />
+			<br /><br />
 			
-			<div class="container">
-			<div class="left30"><label for="user">Username:&nbsp; &nbsp;</label></div>
-			<div class="right70"><input id="user" type="text" name="user" class="form_input" placeholder="Username" required /></div>
-			<div class="clear"></div>
-			</div>
+			<p><strong>Password</strong></p>
+			<input type="password" name="password" class="input_field" style="width:75%;" placeholder="Password" required />
+			<br /><br />
 			
-			<div class="container">
-			<div class="left30"><label for="password">Password:&nbsp; &nbsp;</label></div>
-			<div class="right70"><input id="password" type="password" name="password" class="form_input" placeholder="Password" required /></div>
-			<div class="clear"></div>
-			</div>
-			
-			<br />
-			
-			<input type="submit" value="Log in" style="margin-left:2%;">
+			<input type="submit" value="Log in" class="submit_btn" />
 
 			</form>
-		</section>
 	</div>
-</main>
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
+</div>
 
 
 {% endblock %}

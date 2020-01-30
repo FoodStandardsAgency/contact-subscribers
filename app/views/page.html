@@ -4,9 +4,9 @@
 
 <!-- Guidance top -->
 <div class="row">
-	<div class="col-2 py-3"></div>
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
 	
-	<div class="col-8 py-3">
+	<div class="col-xl-6 col-md-8 col-sm-10 py-3">
 	<p><span class="larger" style="font-weight:900;">Guidance:</span><br /><br />
 	The purpose of this app is to enable communication with subscribers, in case the usual methods do not work.<br /><br />
 	
@@ -19,15 +19,17 @@
 	
 	</div>
 	
-	<div class="col-2 py-3"></div>
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
 </div>
 
 
 <div class="row">
-	<div class="col-2 py-3"></div>
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
 	
-	<div class="col-8 py-3">
-	{% if message == 'y' %} Thank you, your email have been sent. {% endif %}
+	<div class="col-xl-6 col-md-8 col-sm-10 py-3">
+	{% if message == 'y' %}
+	<p class="larger info_box">Thank you, your emails have been sent.</p><br />
+	{% endif %}
 	
 	<form action="/subs-send" method="POST" enctype='multipart/form-data'>
 	
@@ -49,7 +51,7 @@
 	
 	</form>
 	
-	<div class="col-2 py-3"></div>
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
 
 </div>
 

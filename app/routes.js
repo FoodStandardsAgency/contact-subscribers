@@ -1,11 +1,11 @@
 const express 			= require('express');
+const { check } 		= require('express-validator');
 const xss				= require('xss');
 const csvParser 		= require('csv-parser');
 const fs 				= require('fs');
-
+const crypto			= require('crypto');
 const NotifyClient 		= require('notifications-node-client').NotifyClient
 
-// Custom modules
 const router 			= express.Router();
 
 // Add timestamps to logs
@@ -13,15 +13,50 @@ require('log-timestamp');
 console.log("User entry (timestamp 1hr behind)");
 
 // Redirect not logged in users to the login page
-function requireLogin (req, res, next) {console.log("Login"); console.log(req.session.user); console.log(req.session.group); if (req.session.login == undefined) {console.log("login undefined - redirecting"); req.session.destroy(); 
-res.redirect('/login');} else {next();}};
+function requireLogin (req, res, next) {
+	console.log("Log-in"); 
+	console.log(req.session.user); 
+	
+	if (req.session.login != 'yes') {
+		console.log("login undefined - redirecting"); 
+		req.session.destroy(); 
+		res.redirect('/login');
+	} else {next();}
+};
 
 //-------------------------------------------------------------------
 // LOGIN PAGE
 //-------------------------------------------------------------------
 
 router.get ('/login', function (req, res) {res.render("login");});
-router.post('/login', [check('user').escape()], function (req, res) { login(req, res); });
+router.post('/login',[check('user').escape()], function (req, res) { 
+
+	// Get form data
+	const user = req.fields.user;
+	const password = req.fields.password;
+
+	// Hashes
+	const prov_hash = crypto.createHash('sha256').update(password).digest('hex')
+	const pass_hash = process.env.PASSCODE
+	const user_env = process.env.UNAME
+	
+	if(pass_hash == prov_hash && user == user_env ){
+		req.session.user = user;
+		req.session.login = 'yes';
+		
+		console.log("Login details accepted");
+		
+		res.redirect('/');
+		res.end();
+	}
+	else {
+		console.log("Login details rejected");
+		
+		req.session.destroy;
+		res.redirect('/login');
+		res.end();
+	} 
+});
 
 router.get('/log-out', (req, res) => {
 	
@@ -36,13 +71,13 @@ router.get('/log-out', (req, res) => {
 //-------------------------------------------------------------------
 // APP PAGES
 //-------------------------------------------------------------------
-router.get('/', function (req, res) {res.render('page');})
+router.get('/',requireLogin, function (req, res) {res.render('page');})
 
 //-------------------------------------------------------------------
 // PROCESS SUBMISSION
 //-------------------------------------------------------------------
 
-router.post('/subs-send', function(req,res) {
+router.post('/subs-send',requireLogin, function(req,res) {
 	
 	// Function to send Email through notify
 	function send_email(subject, message, email) {notifyClient
