@@ -7,24 +7,19 @@
     "node": "10.x"
   },
   "scripts": {
-    "start": "node server.js",
-    "build": "webpack"
+    "start": "node server.js"
   },
   "dependencies": {
     "chokidar": "latest",
     "client-sessions": "latest",
     "cron": "^1.8.2",
     "crypto": "latest",
-    "csv-array": "0.0.22",
     "csv-parser": "^2.3.2",
-    "csv-stringify": "^5.3.4",
     "dotenv": "latest",
     "express": "^4.15.2",
     "express-formidable": "^1.2.0",
     "express-validator": "latest",
-    "fast-csv": "^4.0.2",
     "find-remove": "^2.0.0",
-    "lodash": "^4.17.4",
     "log-timestamp": "latest",
     "morgan": "^1.9.1",
     "notifications-node-client": "^4.7.0",
