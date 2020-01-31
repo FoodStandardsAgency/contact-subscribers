@@ -6,9 +6,9 @@
   "engines": {
     "node": "10.x"
   },
-  "scripts": {
-    "start": "node server.js"
-  },
+  
+  "scripts": {"start": "node server.js"},
+  
   "dependencies": {
     "chokidar": "latest",
     "client-sessions": "latest",
