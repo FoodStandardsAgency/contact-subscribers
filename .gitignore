@@ -106,7 +106,6 @@ dist
 .tern-port
 
 # Generic libraries
-/app/assets/styles/bootstrap.min.css
 /app/assets/javascripts/jquery-1.9.1.min.js
 /app/assets/javascripts/jquery-1.11.3.js
 /app/assets/javascripts/details.polyfill.js
