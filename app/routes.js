@@ -46,7 +46,7 @@ router.post('/login',[check('user').escape()], function (req, res) {
 		
 		console.log("Login details accepted");
 		
-		res.redirect('/');
+		res.redirect('/guidance');
 		res.end();
 	}
 	else {
@@ -73,7 +73,7 @@ router.get('/log-out', (req, res) => {
 //-------------------------------------------------------------------
 router.get('/',requireLogin, function (req, res) {res.render('page');})
 router.get('/thank-you',requireLogin, function (req, res) {res.render('thankyou');})
-
+router.get('/guidance',requireLogin, function (req, res) {res.render('guidance');})
 
 //-------------------------------------------------------------------
 // DASHBOARD
