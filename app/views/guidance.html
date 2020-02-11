@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block page_content %}
+<!-- Guidance top -->
+<div class="row">
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
+	
+	<div class="col-xl-6 col-md-8 col-sm-10 py-3">
+	<p><span class="larger" style="font-weight:900;">Guidance:</span><br /><br />
+	This service enables you to send an email message to multiple email accounts. <br /><br />
+	
+	Only send messages to people who have signed up to receive notifications from the FSA. If you have any queries check with GDPR team. <a href="#">Policy notice</a><br /><br />
+	
+	To send a message:
+	<ul>
+	<li>Upload a list of email addresses. The file must be in csv format. All email addresses should be entered in the first column only. Do not add a header row. </li>
+	<li>Type your email subject in the form below and click ‘Send’. It will be sent immediately.</li>
+	</ul>
+	<br />
+	Delivery statistics, showing messages sent in the last 7 days, are available on the <a href="/dash">dashboard</a>.<br /><br />
+	The list of email addresses is removed from the app automatically. It will be on the server for a maximum of 2 hours.</p>
+	
+	<br /><br />
+	
+	<p><span class="larger" style="font-weight:900;">Message formatting:</span><br /><br />
+	<p>
+	The form supports basic markdown to add text formatting.<br /><br />
+	To add a title, use a hash:<br /><br />
+	# This is a title<br /><br /><br />
+	
+	To add bullet points, use asterisks:<br /><br />
+	* point 1<br />
+	* point 2<br />
+	* point 3<br /><br /><br />
+	
+	Seperate paragraphs by three dashes:<br /><br />
+	First paragraph<br />
+	---<br />
+	Second paragraph<br />	
+	</p>
+	
+	<br /><br />
+	
+	<p><a href="/"><button style="border-radius:25px; padding:15px; background-color:#006F51; color:#fff;">Compose your message</button></a></p>
+	
+	<br /><hr /><br />
+	
+	</div>
+	
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
+</div>
+
+
+
+{% endblock %}
