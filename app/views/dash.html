@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block page_content %}
+
+<div class="row">
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
+	
+	<div class="col-xl-6 col-md-8 col-sm-10 py-3">
+	<p><span class="larger" style="font-weight:900;">Dashboard</span><br /><br />
+	</div>
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
+
+</div>
+
+<div class="row">
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
+	
+	<div class="col-xl-1 col-md-3 col-sm-3 py-3"><p><span style="font-weight:900;">All messages:</span></p></div>
+	<div class="col-xl-5 col-md-3 col-sm-7 py-3"><p>{% if all %} {{ all }} {% else %} 0 {% endif %}</p></div>
+	
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
+
+</div>
+
+<div class="row">
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
+	
+	<div class="col-xl-1 col-md-3 col-sm-3 py-3"><p><span style="font-weight:900;">Delivered:</span><br /><a href="/dash/delivered" style="font-size:0.9em; color:#007FB2;">Details</a></p></div>
+	<div class="col-xl-5 col-md-3 col-sm-7 py-3"><p>{% if delivered %} {{ delivered }} {% else %} 0 {% endif %} </p></div>
+	
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
+
+</div>
+
+<div class="row">
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
+	
+	<div class="col-xl-1 col-md-3 col-sm-3 py-3"><p><span style="font-weight:900;">Sending:</span><br /><a href="/dash/sending" style="font-size:0.9em; color:#007FB2;">Details</a></p></div>
+	<div class="col-xl-5 col-md-3 col-sm-7 py-3"><p>{% if sending %} {{ sending }} {% else %} 0 {% endif %} </p></div>
+	
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
+
+</div>
+
+<div class="row">
+	<div class="col-xl-2 col-md-1 col-sm-1 py-3"></div>
+	
+	<div class="col-xl-1 col-md-3 col-sm-3 py-3"><p><span style="font-weight:900;">Failed:</span><br /><a href="/dash/failed" style="font-size:0.9em; color:#007FB2;">Details</a></p></div>
+	<div class="col-xl-5 col-md-3 col-sm-7 py-3"><p>{% if failed %} {{ failed }} {% else %} 0 {% endif %} </p></div>
+	
+	<div class="col-xl-4 col-md-3 col-sm-1 py-3"></div>
+
+</div>
+
+
+	<br /><hr /><br />
+
+
+
+{% endblock %}

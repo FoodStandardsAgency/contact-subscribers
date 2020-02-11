@@ -72,6 +72,64 @@ router.get('/log-out', (req, res) => {
 // APP PAGES
 //-------------------------------------------------------------------
 router.get('/',requireLogin, function (req, res) {res.render('page');})
+router.get('/thank-you',requireLogin, function (req, res) {res.render('thankyou');})
+
+
+//-------------------------------------------------------------------
+// DASHBOARD
+//-------------------------------------------------------------------
+
+router.get('/dash',requireLogin, function (req, res) {
+	var notifyClient = new NotifyClient(process.env.TEST_KEY)
+	
+	notifyClient
+	  .getNotifications('email')
+	  .then((response) => {
+		  
+		var responses = response.body.notifications;
+		//console.log(responses)
+		var statuses = [];
+		
+		for (var i = 0; i < responses.length; i++) {
+			statuses.push(responses[i]['status'])
+		}
+
+		var counts = {};
+		statuses.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
+		 res.render('dash', {
+			 "all": statuses.length,
+			 "delivered": counts['delivered'],
+			 "sending": counts['sending'],
+			 "failed": counts['failed']
+		 });
+	  })
+	  .catch((err) => console.error(err))
+})
+
+router.get('/dash/:state',requireLogin, function (req, res) {
+	var notifyClient = new NotifyClient(process.env.TEST_KEY)
+	var status_req = req.params.state
+	
+	notifyClient
+	  .getNotifications('email')
+	  .then((response) => {
+		  
+		var responses = response.body.notifications;
+		var emails = [];
+		
+		for (var i = 0; i < responses.length; i++) {
+			if(responses[i]['status'] == status_req)
+				emails.push(responses[i]['email_address'])
+		}
+		 
+		 res.render('dash_detail', {
+			 "status": status_req,
+			 "count": emails.length,
+			 "emails": emails
+		 });
+	  })
+	  .catch((err) => console.error(err))
+})
 
 //-------------------------------------------------------------------
 // PROCESS SUBMISSION
@@ -101,7 +159,7 @@ router.post('/subs-send',requireLogin, function(req,res) {
     })
 	.on('end', () => {
         console.log("End of file")
-		res.render('page', {"message":"y"})
+		res.redirect('/thank-you')
 		res.end;
 		
 		})}
