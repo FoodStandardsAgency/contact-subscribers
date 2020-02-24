@@ -27,6 +27,41 @@
 	<textarea name = "message" rows="10" class="input_field"></textarea>
 	<br /><br />
 	
+	<!-- Button trigger modal -->
+<a data-toggle="modal" data-target="#exampleModal" style="font-weight:400; text-decoration:underline; cursor: pointer;">
+  Message formatting guidance
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Message formatting</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	<p>
+	<span style="font-weight:900;">Headings</span><br />
+	The form supports basic markdown to add text formatting.<br /><br />
+	To add a title, use a hash:<br /><br />
+	# This is a title<br /><br /><br />
+		
+	<span style="font-weight:900;">Paragraphs</span><br />
+	Separate paragraphs by three dashes:<br /><br />
+	First paragraph<br />
+	---<br />
+	Second paragraph<br />	
+	</p>
+      </div>
+    </div>
+  </div>
+</div>
+	
+	<br /><br />
+	
 	<input type="submit" value="Send" class="submit_btn" />
 	
 	</form>
@@ -41,3 +76,5 @@
 
 
 {% endblock %}
+
+
